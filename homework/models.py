@@ -59,7 +59,7 @@ class Cart:
         if len(self.products) == 0:
             self.products[product] = buy_count
         else:
-            for p in self.products.keys():
+            for p in list(self.products):
                 if p.__hash__() != product.__hash__():
                     self.products[product] = buy_count
                 else:
@@ -81,10 +81,10 @@ class Cart:
         self.products = {}
 
     def get_total_price(self) -> float:
-        sum = 0
+        total_sum = 0
         for product, quantity in self.products.items():
-            sum += product.price * quantity
-        return sum
+            total_sum += product.price * quantity
+        return total_sum
 
     def buy(self):
         """
